@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style.css">
+    <title>Validação de E-mail</title>
+  </head>
+  <body>
+  <div class="form-container">
+    <h2>Validação de E-mail</h2>
+    <form id="formularioEmail">
+      <label for="email">Digite seu e-mail:</label>
+      <input type="text" id="email" name="email" placeholder="exemplo@dominio.com" />
+      <button type="submit">Validar</button>
+      <p id="mensagem"></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("formularioEmail").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const mensagem = document.getElementById("mensagem");
+
+      const regexEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+      if (regexEmail.test(email)) {
+        mensagem.style.color = "green";
+        mensagem.textContent = "✔ E-mail válido!";
+      } else {
+        mensagem.style.color = "red";
+        mensagem.textContent = "✖ E-mail inválido. O e-mail deve conter '@' e um domínio como '.com'.";
+      }
+    });
+  </script>
+</body>
+</html>
